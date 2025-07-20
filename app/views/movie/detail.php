@@ -58,6 +58,7 @@
                   placeholder="1–5"
                   min="1"
                   max="5"
+                  step="1"
                   required
                   style="width: 120px;"
                 >

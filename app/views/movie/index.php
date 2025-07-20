@@ -25,11 +25,25 @@ $results = $results ?? [];
         No titles found for “<?= $query ?>.”
       </div>
     <?php else: ?>
-      <h2 class="mb-3">Results:</h2>
+      <h2 class="mb-3">Matching Results for <?= $query ?>: Click desired movie to see details...</h2>
       <ul class="list-group mb-5">
-        <?php foreach ($results as $item): ?>
-          <li class="list-group-item">
-            <a href="/movie/search?movie=<?= urlencode($item['Title']) ?>">
+      <?php foreach ($results as $item): ?>
+          <li class="list-group-item d-flex align-items-center flex-wrap">
+            <?php if (!empty($item['Poster']) && $item['Poster'] !== 'N/A'): ?>
+              <img
+                src="<?= $item['Poster'] ?>"
+                alt="Poster for <?= $item['Title'] ?>"
+                class="img-fluid me-3 mb-2"
+                style="max-width: 60px;"
+              >
+            <?php else: ?>
+              <div
+                class="bg-secondary me-3 mb-2"
+                style="width: 60px; height: 90px;"
+              ></div>
+            <?php endif; ?>
+    
+            <a href="/movie/search?movie=<?= urlencode($item['Title']) ?>" class="flex-grow-1">
               <?= $item['Title'] ?> (<?= $item['Year'] ?>)
             </a>
           </li>
@@ -37,5 +51,4 @@ $results = $results ?? [];
       </ul>
     <?php endif; ?>
   <?php endif; ?>
-  </div>
-  
+</div>

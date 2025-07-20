@@ -35,9 +35,11 @@
               <li><strong>Runtime:</strong>  <?= $movie['Runtime'] ?></li>
               <li><strong>IMDB Rating:</strong> <?= $movie['imdbRating'] ?></li>
             </ul>
-            <a href="/movie?movie=<?= urlencode($movie['Title']) ?>" class="btn btn-secondary mt-3">
-              <-- Back to Results
-            </a>
+            <button type="button" class="btn btn-secondary mt-3" onclick="history.back()"
+            >
+              &larr; Back to Results
+            </button>
+
           </div>
         </div>
       </div>

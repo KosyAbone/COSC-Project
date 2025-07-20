@@ -43,7 +43,7 @@ $results = $results ?? [];
               ></div>
             <?php endif; ?>
     
-            <a href="/movie/search?movie=<?= urlencode($item['Title']) ?>" class="flex-grow-1">
+            <a href="/movie/detail?movie=<?= urlencode($item['Title']) ?>" class="flex-grow-1">
               <?= $item['Title'] ?> (<?= $item['Year'] ?>)
             </a>
           </li>

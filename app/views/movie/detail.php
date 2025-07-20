@@ -3,6 +3,8 @@
 
 <?php
   $movie = $movie ?? null;
+  $average = $average ?? null;
+  $count = $count ?? 0;
 ?>
 
 <div class="container py-4">
@@ -12,6 +14,28 @@
     </div>
   <?php else: ?>
     <h1 class="mb-4"><?= $movie['Title'] ?> (<?= $movie['Year'] ?>)</h1>
+
+    <!-- ★ Average Rating Display -->
+    <?php if ($average !== null): ?>
+      <div class="d-flex align-items-center mb-4">
+        <div class="me-3">
+          <span class="fs-5 fw-bold"><?= $average ?></span>
+          <span class="text-muted fs-6 fw-bold">/ 5</span>
+        </div>
+        <div class="me-auto">
+          <?php for ($i = 1; $i <= 5; $i++): ?>
+            <?php if ($i <= floor($average)): ?>
+              <span style="color:#ffc107; font-size:1rem;">&#9733;</span>
+            <?php else: ?>
+              <span style="color:#ddd; font-size:1rem;">&#9733;</span>
+            <?php endif; ?>
+          <?php endfor; ?>
+        </div>
+        <div class="text-muted">Total Reviews: 
+          <?= $count ?> <?= $count === 1 ? 'rating' : 'ratings' ?>
+        </div>
+      </div>
+    <?php endif; ?> <!-- End Rating Display -->
 
     <div class="card mb-4 mx-auto" style="max-width: 800px;">
       <div class="row g-0">
@@ -39,7 +63,7 @@
             </ul>
             <button
               type="button"
-              class="btn btn-secondary mb-4"
+              class="btn btn-primary mb-4"
               onclick="history.back()"
             >
               &larr; Back to Results

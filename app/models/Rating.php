@@ -39,4 +39,13 @@ class Rating {
         return $avg !== null ? round((float)$avg, 2) : null;
     }
 
+    public function getTotalRatingsByMovie(string $movieTitle): int {
+        $db = db_connect();
+        $stmt = $db->prepare(
+            'SELECT COUNT(*) FROM ratings WHERE movie_title = :movie_title'
+        );
+        $stmt->execute([':movie_title' => $movieTitle]);
+        return (int)$stmt->fetchColumn();
+    }
+
 }

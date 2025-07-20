@@ -34,13 +34,20 @@ class Movie extends Controller {
         $movieModel = $this->model('OMDB');
         $movie = $movieModel->fetchByTitle($title);
 
+        // fetch the ratings detail for the movie
+        $ratingModel = $this->model('Rating');
+        $average = $ratingModel->getAverageRating($title);
+        $count = $ratingModel->getTotalRatingsByMovie($title);
+
         $flash = $_SESSION['flash'] ?? null;
         unset($_SESSION['flash']);
 
         // Render the dynamic detail view
         $this->view('movie/detail', [
             'movie' => $movie,
-            'flash' => $flash
+            'flash' => $flash,
+            'average' => $average,
+            'count' => $count
         ]);
     }
 

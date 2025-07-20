@@ -16,7 +16,7 @@ class Movie extends Controller {
         $movieModel = $this->model('OMDB');
         $results = $movieModel->search($title);
 
-        // print the array
+        // render the view and pass down the results and the query to the view
         $this->view('movie/index', [
             'query' => $title,
             'results' => $results
@@ -24,6 +24,19 @@ class Movie extends Controller {
     }
 
     public function detail() {
-        $this->view('movie/detail');
+        $title = trim($_GET['movie'] ?? '');
+        if ($title === '') {
+            header('Location: /movie');
+            exit;
+        }
+
+        // Fetch the full details via the OMDB model
+        $movieModel = $this->model('OMDB');
+        $movie = $movieModel->fetchByTitle($title);
+
+        // Render the dynamic detail view
+        $this->view('movie/detail', [
+            'movie' => $movie
+        ]);
     }
 }

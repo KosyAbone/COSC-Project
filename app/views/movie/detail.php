@@ -1,4 +1,5 @@
 <?php require_once 'app/views/templates/header.php'; ?>
+<?php require_once 'app/views/templates/flash.php'; ?>
 
 <?php
   $movie = $movie ?? null;

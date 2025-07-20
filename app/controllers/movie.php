@@ -34,9 +34,30 @@ class Movie extends Controller {
         $movieModel = $this->model('OMDB');
         $movie = $movieModel->fetchByTitle($title);
 
+        $flash = $_SESSION['flash'] ?? null;
+        unset($_SESSION['flash']);
+
         // Render the dynamic detail view
         $this->view('movie/detail', [
-            'movie' => $movie
+            'movie' => $movie,
+            'flash' => $flash
         ]);
+    }
+
+    public function rate() {
+        $title  = trim($_POST['movie']  ?? '');
+        $rating = (int) ($_POST['rating'] ?? 0);
+
+        // validate to ensure its between 1 to 5
+        if ($title !== '' && $rating >= 1 && $rating <= 5) {
+            $ratingModel = $this->model('Rating');
+            $ratingModel->rate($title, $rating);
+            $_SESSION['flash'] = "Thank you! You rated “{$title}” {$rating}/5.";
+        } else {
+            $_SESSION['flash'] = 'Your rating must be an integer from 1 to 5.';
+        }
+
+        header('Location: /movie/detail?movie=' . urlencode($title));
+        exit;
     }
 }

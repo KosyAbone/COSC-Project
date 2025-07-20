@@ -61,7 +61,7 @@ class App {
     }
 
     public function parseUrl() {
-        $u = "{$_SERVER['REQUEST_URI']}";
+        $u = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         //trims the trailing forward slash (rtrim), sanitizes URL, explode it by forward slash to get elements
         $url = explode('/', filter_var(rtrim($u, '/'), FILTER_SANITIZE_URL));
 		unset($url[0]);

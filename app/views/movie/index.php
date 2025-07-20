@@ -6,7 +6,7 @@
     <div class="input-group">
       <input
         type="text"
-        name="q"
+        name="movie"
         class="form-control"
         placeholder="Enter movie title…"
         required

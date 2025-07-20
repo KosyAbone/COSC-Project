@@ -101,11 +101,19 @@
                 <button type="submit" class="btn btn-success">Submit</button>
               </div>
             </form>
+
+            <!-- AI Review Section -->
+            <div id="ai-review-section" class="mt-4 p-4 border rounded bg-light">
+              <h5 class="text-center mb-3">AI‑Generated Review</h5>
+              <p class="text-muted text-center">
+                This is where an AI-generated review of the movie will appear. just testing
+              </p>
+            </div> <!-- AI Review Section ends -->
           </div>
         </div>
       </div>
     </div>
-    <!-- ↓ New: User reviews list ↓ -->
+    <!-- User reviews list -->
     <h5 class="mt-4">User Reviews</h5>
     <?php if (count($reviews) === 0): ?>
       <p class="text-muted">No user reviews yet.</p>

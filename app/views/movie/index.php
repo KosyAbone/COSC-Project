@@ -1,6 +1,6 @@
 <?php require_once 'app/views/templates/header.php';
-  $query = $query ?? '';
-  $movie = $movie ?? null;
+$query   = $query   ?? '';
+$results = $results ?? [];
 ?>
 
 <div class="container py-4">
@@ -19,38 +19,23 @@
     </div>
   </form>
 
-  <?php if ($movie): ?>
-    <div class="card mb-4" style="max-width: 800px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img
-            src="<?= $movie['Poster'] ?>"
-            class="img-fluid rounded-start"
-            alt="Poster for <?= $movie['Title'] ?>"
-          >
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">
-              <?= $movie['Title'] ?> (<?= $movie['Year'] ?>)
-            </h5>
-            <p class="card-text"><?= $movie['Plot'] ?></p>
-            <p class="card-text">
-              <small class="text-muted">
-                Director: <?= $movie['Director'] ?><br>
-                Actors:   <?= $movie['Actors'] ?><br>
-                Genre:    <?= $movie['Genre'] ?>
-              </small>
-            </p>
-          </div>
-        </div>
+  <?php if ($query !== ''): ?>
+    <?php if (empty($results)): ?>
+      <div class="alert alert-warning">
+        No titles found for “<?= $query ?>.”
       </div>
-    </div>
-  <?php elseif ($query !== ''): ?>
-    <div class="alert alert-warning">
-      No movie found matching “<?= $query ?>”.
-    </div>
+    <?php else: ?>
+      <h2 class="mb-3">Results:</h2>
+      <ul class="list-group mb-5">
+        <?php foreach ($results as $item): ?>
+          <li class="list-group-item">
+            <a href="/movie/search?movie=<?= urlencode($item['Title']) ?>">
+              <?= $item['Title'] ?> (<?= $item['Year'] ?>)
+            </a>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php endif; ?>
   <?php endif; ?>
-</div>
-
-<?php require_once 'app/views/templates/footer.php'; ?>
+  </div>
+  

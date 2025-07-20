@@ -14,12 +14,12 @@ class Movie extends Controller {
 
         // instantiate the model and call the fetch method which calls OMDB API
         $movieModel = $this->model('OMDB');
-        $movie = $movieModel->fetchByTitle($title);
+        $results = $movieModel->search($title);
 
         // print the array
         $this->view('movie/index', [
             'query' => $title,
-            'movie' => $movie
+            'results' => $results
         ]);
     }
 }

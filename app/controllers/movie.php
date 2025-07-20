@@ -17,10 +17,9 @@ class Movie extends Controller {
         $movie = $movieModel->fetchByTitle($title);
 
         // print the array
-        echo '<pre>';
-        print_r($movie);
-        echo '</pre>';
-        exit;
+        $this->view('movie/index', [
+            'query' => $title,
+            'movie' => $movie
+        ]);
     }
-
 }

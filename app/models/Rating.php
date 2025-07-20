@@ -47,5 +47,5 @@ class Rating {
         $stmt->execute([':movie_title' => $movieTitle]);
         return (int)$stmt->fetchColumn();
     }
-
+    
 }

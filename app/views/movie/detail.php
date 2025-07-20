@@ -5,6 +5,9 @@
   $movie = $movie ?? null;
   $average = $average ?? null;
   $count = $count ?? 0;
+  $imdbRaw = $movie['imdbRating'] ?? null;
+  $imdbNum = is_numeric($imdbRaw) ? (float)$imdbRaw : null;
+  $imdbOutOfFive = $imdbNum !== null ? round($imdbNum / 2, 2) : null;
 ?>
 
 <div class="container py-4">
@@ -15,27 +18,36 @@
   <?php else: ?>
     <h1 class="mb-4"><?= $movie['Title'] ?> (<?= $movie['Year'] ?>)</h1>
 
-    <!-- ★ Average Rating Display -->
-    <?php if ($average !== null): ?>
-      <div class="d-flex align-items-center mb-4">
-        <div class="me-3">
-          <span class="fs-5 fw-bold"><?= $average ?></span>
-          <span class="text-muted fs-6 fw-bold">/ 5</span>
-        </div>
-        <div class="me-auto">
+    <!-- Ratings Display -->
+    <div class="mb-4 text-center">
+      <?php if ($imdbOutOfFive !== null): ?>
+        <div class="mb-2">
+          <small class="text-muted">
+            IMDb Ratings: <?= $imdbOutOfFive ?>/5
+          </small><br>
           <?php for ($i = 1; $i <= 5; $i++): ?>
-            <?php if ($i <= floor($average)): ?>
-              <span style="color:#ffc107; font-size:1rem;">&#9733;</span>
-            <?php else: ?>
-              <span style="color:#ddd; font-size:1rem;">&#9733;</span>
-            <?php endif; ?>
+            <span class="fs-4 <?= $i <= round($imdbOutOfFive) ? 'text-warning' : 'text-muted' ?>">
+              &#9733;
+            </span>
           <?php endfor; ?>
         </div>
-        <div class="text-muted">Total Reviews: 
-          <?= $count ?> <?= $count === 1 ? 'rating' : 'ratings' ?>
-        </div>
+      <?php endif; ?>
+  
+      <div>
+        <?php if ($count > 0): ?>
+          <small class="text-muted">
+            myMovieApp User Ratings: <?= $average ?>/5 (out of <?= $count ?> vote<?= $count > 1 ? 's' : '' ?>)
+          </small><br>
+          <?php for ($i = 1; $i <= 5; $i++): ?>
+            <span class="fs-4 <?= $i <= round($average) ? 'text-primary' : 'text-muted' ?>">
+              &#9733;
+            </span>
+          <?php endfor; ?>
+        <?php else: ?>
+          <small class="text-muted">No myMovieApp user ratings yet.</small>
+        <?php endif; ?>
       </div>
-    <?php endif; ?> <!-- End Rating Display -->
+    </div> <!-- Ratings Display ends here-->
 
     <div class="card mb-4 mx-auto" style="max-width: 800px;">
       <div class="row g-0">

@@ -30,7 +30,7 @@
         margin-bottom: 2rem;
     }
 
-    a {
+    .link {
         display: inline-block;
         padding: 0.6rem 1.2rem;
         background: #007bff;
@@ -49,10 +49,7 @@
 <div class="container">
     <h1>Welcome, <?=$_SESSION['username'] ?>!</h1>
     <p class="lead"><?= date("l, F j, Y, g:i A"); ?></p>
-
-    <p><a href="/reminders">Go To Reminders</a></p>
-    
-    <p><a href="/logout">Logout</a></p>
+    <p><a class="link" href="/logout">Logout</a></p>
 </div>
 
 <?php require_once 'app/views/templates/footer.php'; ?>

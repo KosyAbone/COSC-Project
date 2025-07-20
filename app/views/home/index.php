@@ -49,6 +49,7 @@
 <div class="container">
     <h1>Welcome, <?=$_SESSION['username'] ?>!</h1>
     <p class="lead"><?= date("l, F j, Y, g:i A"); ?></p>
+    <p><a class="link" href="/movie">Movie Search</a></p>
     <p><a class="link" href="/logout">Logout</a></p>
 </div>
 

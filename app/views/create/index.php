@@ -1,4 +1,4 @@
-<?php require_once 'app/views/templates/headerPublic.php'; ?>
+<?php require_once 'app/views/templates/header.php'; ?>
 
 <main style="margin-left: 1em">
     <h2>Create Account</h2>

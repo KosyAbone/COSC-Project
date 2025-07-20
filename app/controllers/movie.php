@@ -36,6 +36,7 @@ class Movie extends Controller {
 
         // fetch the ratings detail for the movie
         $ratingModel = $this->model('Rating');
+        $reviews = $ratingModel->getAllRatingsForMovie($title);
         $average = $ratingModel->getAverageRating($title);
         $count = $ratingModel->getTotalRatingsByMovie($title);
 
@@ -47,7 +48,8 @@ class Movie extends Controller {
             'movie' => $movie,
             'flash' => $flash,
             'average' => $average,
-            'count' => $count
+            'count' => $count,
+            'reviews' => $reviews
         ]);
     }
 

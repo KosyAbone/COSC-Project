@@ -5,6 +5,7 @@
   $movie = $movie ?? null;
   $average = $average ?? null;
   $count = $count ?? 0;
+  $reviews = $reviews ?? [];
   $imdbRaw = $movie['imdbRating'] ?? null;
   $imdbNum = is_numeric($imdbRaw) ? (float)$imdbRaw : null;
   $imdbOutOfFive = $imdbNum !== null ? round($imdbNum / 2, 2) : null;
@@ -73,11 +74,7 @@
               <li><strong>Runtime:</strong>  <?= $movie['Runtime'] ?></li>
               <li><strong>IMDB Rating:</strong> <?= $movie['imdbRating'] ?></li>
             </ul>
-            <button
-              type="button"
-              class="btn btn-primary mb-4"
-              onclick="history.back()"
-            >
+            <button type="button" class="btn btn-primary mb-4" onclick="history.back()">
               &larr; Back to Results
             </button>
 
@@ -108,6 +105,27 @@
         </div>
       </div>
     </div>
+    <!-- ↓ New: User reviews list ↓ -->
+    <h5 class="mt-4">User Reviews</h5>
+    <?php if (count($reviews) === 0): ?>
+      <p class="text-muted">No user reviews yet.</p>
+    <?php else: ?>
+      <ul class="list-group mb-5">
+        <?php foreach ($reviews as $rev): ?>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong><?= htmlspecialchars($rev['reviewer']) ?></strong>
+              <small class="text-muted"> at 
+                <?= date('Y‑m‑d H:i', strtotime($rev['created_at'])) ?>
+              </small>
+            </div>
+            <span class="badge bg-primary rounded-pill">
+              <?= (int)$rev['rating'] ?>/5
+            </span>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php endif; ?>
   <?php endif; ?>
 </div>
 

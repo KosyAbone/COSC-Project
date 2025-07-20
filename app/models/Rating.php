@@ -21,9 +21,22 @@ class Rating {
 
         return $stmt->execute([
             ':movie_title' => $movieTitle,
-            ':rating'      => $rating,
-            ':user_id'     => $userId,
+            ':rating' => $rating,
+            ':user_id' => $userId,
         ]);
+    }
+
+    public function getAverageRating(string $movieTitle): ?float {
+        $db = db_connect();
+        $stmt = $db->prepare(
+            'SELECT AVG(rating) AS avg_rating
+             FROM ratings
+             WHERE movie_title = :movie_title'
+        );
+        $stmt->execute([':movie_title' => $movieTitle]);
+
+        $avg = $stmt->fetchColumn();
+        return $avg !== null ? round((float)$avg, 2) : null;
     }
 
 }

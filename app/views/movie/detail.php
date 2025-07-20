@@ -23,7 +23,7 @@
       <?php if ($imdbOutOfFive !== null): ?>
         <div class="mb-2">
           <small class="text-muted">
-            IMDb Ratings: <?= $imdbOutOfFive ?>/5
+            Avg IMDb Ratings: <?= $imdbOutOfFive ?>/5
           </small><br>
           <?php for ($i = 1; $i <= 5; $i++): ?>
             <span class="fs-4 <?= $i <= round($imdbOutOfFive) ? 'text-warning' : 'text-muted' ?>">
@@ -36,7 +36,7 @@
       <div>
         <?php if ($count > 0): ?>
           <small class="text-muted">
-            myMovieApp User Ratings: <?= $average ?>/5 (out of <?= $count ?> vote<?= $count > 1 ? 's' : '' ?>)
+            Avg myMovieApp User Ratings: <?= $average ?>/5 (out of <?= $count ?> vote<?= $count > 1 ? 's' : '' ?>)
           </small><br>
           <?php for ($i = 1; $i <= 5; $i++): ?>
             <span class="fs-4 <?= $i <= round($average) ? 'text-primary' : 'text-muted' ?>">

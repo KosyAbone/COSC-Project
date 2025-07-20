@@ -47,5 +47,23 @@ class Rating {
         $stmt->execute([':movie_title' => $movieTitle]);
         return (int)$stmt->fetchColumn();
     }
-    
+
+    public function getAllRatingsForMovie(string $movieTitle): array {
+        $db = db_connect();
+        $stmt = $db->prepare(
+            "SELECT
+              r.rating,
+              r.created_at,
+              CASE 
+                WHEN u.username IS NULL THEN 'Guest'
+                ELSE u.username
+              END AS reviewer
+            FROM ratings r
+            LEFT JOIN users u ON r.user_id = u.id
+            WHERE r.movie_title = :movie
+            ORDER BY r.created_at DESC;"
+        );
+        $stmt->execute([':movie' => $movieTitle]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

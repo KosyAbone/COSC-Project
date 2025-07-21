@@ -44,6 +44,11 @@ class Movie extends Controller {
         $average = $ratingModel->getAverageRating($title);
         $count = $ratingModel->getTotalRatingsByMovie($title);
 
+        // Calculate fallback rating using the IMDb
+        $imdbRaw = $movie['imdbRating'] ?? null;
+        $imdbNum = is_numeric($imdbRaw) ? (float)$imdbRaw : null;
+        $imdbOutOfFive = $imdbNum !== null ? round($imdbNum / 2, 2) : null;
+
         $flash = $_SESSION['flash'] ?? null;
         unset($_SESSION['flash']);
 
@@ -54,7 +59,8 @@ class Movie extends Controller {
             'average' => $average,
             'count' => $count,
             'reviews' => $reviews,
-            'aiReview' => $aiReview
+            'aiReview' => $aiReview,
+            'imdbOutOfFive' => $imdbOutOfFive
         ]);
     }
 
@@ -74,22 +80,4 @@ class Movie extends Controller {
         header('Location: /movie/detail?movie=' . urlencode($title));
         exit;
     }
-
-    // public function review() {
-    //     $title = trim($_GET['movie'] ?? '');
-
-    //     if ($title === '') {
-    //         header('Location: /movie');
-    //         exit;
-    //     }
-
-    //     // Load the GeminiAI model and call generate()
-    //     $aiModel = $this->model('GeminiAI');
-    //     $review = $aiModel->generate($title);
-
-    //     // print for now to check if its wired up correctly
-    //     print_r($review);
-    //     exit;
-    // }
-
 }

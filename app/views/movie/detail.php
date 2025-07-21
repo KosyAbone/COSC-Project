@@ -7,9 +7,7 @@
   $aiReview = $aiReview ?? "";
   $count = $count ?? 0;
   $reviews = $reviews ?? [];
-  $imdbRaw = $movie['imdbRating'] ?? null;
-  $imdbNum = is_numeric($imdbRaw) ? (float)$imdbRaw : null;
-  $imdbOutOfFive = $imdbNum !== null ? round($imdbNum / 2, 2) : null;
+  $imdbOutOfFive = $imdbOutOfFive ?? null;
 ?>
 
 <div class="container py-4">

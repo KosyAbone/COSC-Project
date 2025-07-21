@@ -24,4 +24,4 @@ define('DB_PORT', '3305');
 define('OMDB_API_KEY', $_ENV['OMDB_API_KEY'] ?? '');
 define('OMDB_API_URL', 'http://www.omdbapi.com/');
 define('GEMINI_API_KEY', $_ENV['GEMINI_API_KEY']);
-define('GEMINI_API_URL', 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent');
+define('GEMINI_API_URL', 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent');

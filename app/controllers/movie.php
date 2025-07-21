@@ -30,24 +30,25 @@ class Movie extends Controller {
             exit;
         }
 
-        // Fetch the full details via the OMDB model
+        // Fetch the full movie details via the OMDB model
         $movieModel = $this->model('OMDB');
         $movie = $movieModel->fetchByTitle($title);
 
-        // Load the GeminiAI model and call generate()
-        $geminiModel = $this->model('GeminiAI');
-        $aiReview = $geminiModel->generate($title);
-
-        // fetch the ratings detail for the movie
+        // fetch the ratings details for the movie
         $ratingModel = $this->model('Rating');
         $reviews = $ratingModel->getAllRatingsForMovie($title);
         $average = $ratingModel->getAverageRating($title);
         $count = $ratingModel->getTotalRatingsByMovie($title);
 
-        // Calculate fallback rating using the IMDb
+        // Calculate fallback rating using the IMDb (prorate to /5)
         $imdbRaw = $movie['imdbRating'] ?? null;
         $imdbNum = is_numeric($imdbRaw) ? (float)$imdbRaw : null;
         $imdbOutOfFive = $imdbNum !== null ? round($imdbNum / 2, 2) : null;
+
+        $ratingForAI = $count > 0 ? $average : $imdbOutOfFive;
+        // Load the GeminiAI model and call generate()
+        $geminiModel = $this->model('GeminiAI');
+        $aiReview = $geminiModel->generate($title, $ratingForAI);
 
         $flash = $_SESSION['flash'] ?? null;
         unset($_SESSION['flash']);

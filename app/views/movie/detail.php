@@ -4,6 +4,7 @@
 <?php
   $movie = $movie ?? null;
   $average = $average ?? null;
+  $aiReview = $aiReview ?? "";
   $count = $count ?? 0;
   $reviews = $reviews ?? [];
   $imdbRaw = $movie['imdbRating'] ?? null;
@@ -106,7 +107,7 @@
             <div id="ai-review-section" class="mt-4 p-4 border rounded bg-light">
               <h5 class="text-center mb-3">AI‑Generated Review</h5>
               <p class="text-muted text-center">
-                This is where an AI-generated review of the movie will appear. just testing
+                <em><?= $aiReview ?></em>
               </p>
             </div> <!-- AI Review Section ends -->
           </div>

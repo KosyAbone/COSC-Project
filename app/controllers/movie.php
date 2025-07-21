@@ -34,6 +34,10 @@ class Movie extends Controller {
         $movieModel = $this->model('OMDB');
         $movie = $movieModel->fetchByTitle($title);
 
+        // Load the GeminiAI model and call generate()
+        $geminiModel = $this->model('GeminiAI');
+        $aiReview = $geminiModel->generate($title);
+
         // fetch the ratings detail for the movie
         $ratingModel = $this->model('Rating');
         $reviews = $ratingModel->getAllRatingsForMovie($title);
@@ -49,7 +53,8 @@ class Movie extends Controller {
             'flash' => $flash,
             'average' => $average,
             'count' => $count,
-            'reviews' => $reviews
+            'reviews' => $reviews,
+            'aiReview' => $aiReview
         ]);
     }
 
@@ -69,4 +74,22 @@ class Movie extends Controller {
         header('Location: /movie/detail?movie=' . urlencode($title));
         exit;
     }
+
+    // public function review() {
+    //     $title = trim($_GET['movie'] ?? '');
+
+    //     if ($title === '') {
+    //         header('Location: /movie');
+    //         exit;
+    //     }
+
+    //     // Load the GeminiAI model and call generate()
+    //     $aiModel = $this->model('GeminiAI');
+    //     $review = $aiModel->generate($title);
+
+    //     // print for now to check if its wired up correctly
+    //     print_r($review);
+    //     exit;
+    // }
+
 }

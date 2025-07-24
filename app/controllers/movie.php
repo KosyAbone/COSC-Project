@@ -2,8 +2,26 @@
 
 class Movie extends Controller {
     public function index() {
-        $this->view('movie/index');
+        // Get the list of rated titles from the DB
+        $ratingModel = $this->model('Rating');
+        $titles = $ratingModel->getRatedMovies();
+
+        // Fetch each movie’s details from OMDB using their titles
+        $omdb = $this->model('OMDB');
+        $trendingMovies = [];
+        foreach ($titles as $title) {
+            $movie = $omdb->fetchByTitle($title);
+            if ($movie) {
+                $trendingMovies[] = $movie;
+            }
+        }
+
+        // Render same view, and pass the movie list
+        $this->view('movie/index', [
+            'trendingMovies' => $trendingMovies
+        ]);
     }
+    
 
     public function search() {
         $title = trim($_GET['movie'] ?? '');
@@ -12,7 +30,7 @@ class Movie extends Controller {
             exit;
         }
 
-        // instantiate the model and call the search method which calls OMDB API and gets list of matching results
+        // instantiate model and call search method to call OMDB API and gets list of matching results
         $movieModel = $this->model('OMDB');
         $results = $movieModel->search($title);
 
@@ -22,6 +40,7 @@ class Movie extends Controller {
             'results' => $results
         ]);
     }
+    
 
     public function detail() {
         $title = trim($_GET['movie'] ?? '');
@@ -65,6 +84,7 @@ class Movie extends Controller {
         ]);
     }
 
+    
     public function rate() {
         $title  = trim($_POST['movie']  ?? '');
         $rating = (int) ($_POST['rating'] ?? 0);

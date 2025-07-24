@@ -66,4 +66,15 @@ class Rating {
         $stmt->execute([':movie' => $movieTitle]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getRatedMovies(): array {
+        $db = db_connect();
+        $stmt = $db->prepare(
+            'SELECT DISTINCT movie_title
+               FROM ratings
+           ORDER BY movie_title ASC'
+        );
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
 }

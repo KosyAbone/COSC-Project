@@ -1,6 +1,7 @@
 <?php require_once 'app/views/templates/header.php';
-$query   = $query   ?? '';
+$query = $query ?? '';
 $results = $results ?? [];
+$trendingMovies = $trendingMovies ?? [];
 ?>
 
 <div class="container py-4">
@@ -18,6 +19,37 @@ $results = $results ?? [];
       <button class="btn btn-primary">Search</button>
     </div>
   </form>
+
+  <!-- Trending/rated movies -->
+  <?php if (!empty($trendingMovies)): ?>
+    <h5 class="mb-3">Recommended Movies</h5>
+    <div class="row g-3 mb-5">
+      <?php foreach ($trendingMovies as $m): ?>
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="card h-100 shadow-sm">
+            <?php if (!empty($m['Poster']) && $m['Poster'] !== 'N/A'): ?>
+              <img
+                src="<?= $m['Poster'] ?>"
+                class="card-img-top"
+                alt="<?= $m['Title'] ?>"
+                style="object-fit:cover; height:200px;"
+              >
+            <?php else: ?>
+              <div class="bg-secondary" style="height:200px;"></div>
+            <?php endif; ?>
+            <div class="card-body p-2">
+              <p class="card-title mb-1" style="font-size:.9rem;"><?= $m['Title'] ?></p>
+              <small class="text-muted"><?= $m['Year'] ?></small>
+              <a
+                href="/movie/detail?movie=<?= urlencode($m['Title']) ?>"
+                class="stretched-link"
+              ></a>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
 
   <?php if ($query !== ''): ?>
     <?php if (empty($results)): ?>

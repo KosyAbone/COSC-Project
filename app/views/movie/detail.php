@@ -71,7 +71,7 @@
               <li><strong>Actors:</strong>   <?= $movie['Actors'] ?></li>
               <li><strong>Genre:</strong>    <?= $movie['Genre'] ?></li>
               <li><strong>Runtime:</strong>  <?= $movie['Runtime'] ?></li>
-              <li><strong>IMDB Rating:</strong> <?= $movie['imdbRating'] ?></li>
+              <li><strong>IMDB Rating:</strong> <?= $movie['imdbRating'] ?>/10</li>
             </ul>
             <button type="button" class="btn btn-primary mb-4" onclick="history.back()">
               &larr; Back to Results

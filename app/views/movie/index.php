@@ -84,3 +84,5 @@ $trendingMovies = $trendingMovies ?? [];
     <?php endif; ?>
   <?php endif; ?>
 </div>
+
+<?php require_once 'app/views/templates/footer.php';

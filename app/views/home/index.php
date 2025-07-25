@@ -6,9 +6,9 @@
 
 <main class="container py-5">
 
-  <div class="p-5 mb-5 bg-light rounded-3 text-center">
+  <div class="p-5 mb-5 bg-white shadow-lg rounded-3 text-center mx-auto"">
     <h1 class="display-5 fw-bold">Welcome, <?= $user ?>!</h1>
-    <p class="col-md-8 mx-auto mb-4">
+    <p class="col-md-8 mx-auto mb-4 text-secondary">
       Discover, rate, and get AI‑generated reviews of your favourite movies.
     </p>
     <a href="/movie" class="btn btn-primary btn-lg">
@@ -36,7 +36,7 @@
             <i class="fa fa-star fa-md me-2 text-warning"></i>Rate
           </h5>
           <p class="card-text">
-            Give each movie your personal rating (1–5) and track them in your account.
+            Give each movie your personal rating ranging from 1–5.
           </p>
         </div>
       </div>

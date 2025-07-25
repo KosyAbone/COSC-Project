@@ -1,3 +1,4 @@
+</main>
 <footer class="footer bg-light border-top mt-5 py-4">
   <div class="container">
     <div class="row gy-3 align-items-center">

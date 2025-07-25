@@ -25,11 +25,12 @@
     />
 
   </head>
-      <body class="d-flex flex-column min-vh-100">
+      <body class="d-flex flex-column min-vh-100" style="background:  url('/app/assets/img_.jpeg') no-repeat center center fixed;
+        background-size: cover;">
       <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
           <a class="navbar-brand d-flex align-items-center" href="/home">
-            <img src="/app/assets/logo.png" height="70" class="me-2" alt="myMovieApp">
+            <img src="/app/assets/logo.png" height="80" class="me-2" alt="myMovieApp">
           </a>
 
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">

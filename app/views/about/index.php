@@ -7,8 +7,7 @@
       <h1 class="card-title mb-4 text-center">About Me</h1>
       <p class="card-text">
         Hello! I’m <strong>Kosi Abone</strong>, the creator of <em>myMovieApp</em>.
-        I built this little web app as part of COSC 4806 to let anyone search movies,
-        rate them, and even get AI‑generated mini‑reviews.
+        I built this little web app as part of COSC 4806 to let anyone search movies, rate them, and even get AI‑generated reviews.
       </p>
       <p>Under the hood it uses:</p>
       <ul>

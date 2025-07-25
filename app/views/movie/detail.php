@@ -79,7 +79,7 @@
 
             <!-- Rating Form -->
             <h5 class="mb-3">Rate this Movie</h5>
-            <form action="/movie/rate" method="post" class="row g-2 align-items-end">
+            <form action="/movie/rate" method="post" class="row g-2 align-items-end mb-3">
               <input type="hidden" name="movie" value="<?= $movie['Title'] ?>">
               <div class="col-auto">
                 <label for="rating" class="form-label visually-hidden">Rating</label>
@@ -102,16 +102,27 @@
             </form>
 
             <!-- AI Review Section -->
-            <div id="ai-review-section" class="mt-4 p-4 border rounded bg-light">
-              <h5 class="text-center mb-3">AI‑Generated Review</h5>
-              <p class="text-muted text-center">
-                <em><?= $aiReview ?></em>
-              </p>
-            </div> <!-- AI Review Section ends -->
+            <?php if (!$generated): ?> <!-- i.e if user hasn’t generated yet -->
+              <a
+                href="/movie/detail?movie=<?= urlencode($movie['Title']) ?>&genAI=1"
+                class="btn btn-outline-info"
+              >Generate AI‑Review</a>
+            <?php else: ?> <!-- i.e we have $aiReview -->
+              <div class="card mb-4 p-3 bg-light">
+                <h5 class="mb-2">AI‑Generated Review</h5>
+                <p><?= $aiReview ?></p>
+                <a
+                  href="/movie/detail?movie=<?= urlencode($movie['Title']) ?>"
+                  class="btn btn-sm btn-outline-secondary"
+                >Reset Review</a>
+              </div>
+            <?php endif; ?> <!-- AI Review Section ends -->
+
           </div>
         </div>
       </div>
     </div>
+  
     <!-- User reviews list -->
     <h5 class="mt-4">User Reviews</h5>
     <?php if (count($reviews) === 0): ?>

@@ -48,7 +48,7 @@
             <i class="fa fa-robot fa-md me-2"></i>AI Reviews
           </h5>
           <p class="card-text">
-            Get a custom, AI‑generated review based on average ratings (IMDb or yours).
+            Get a custom, AI‑generated review based on average ratings (users or IMDb).
           </p>
         </div>
       </div>

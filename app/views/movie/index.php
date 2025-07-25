@@ -60,7 +60,7 @@ $trendingMovies = $trendingMovies ?? [];
       <h2 class="mb-3">Matching Results for <?= $query ?>: Click desired movie to see details...</h2>
       <ul class="list-group mb-5">
       <?php foreach ($results as $item): ?>
-          <li class="list-group-item d-flex align-items-center flex-wrap mb-3 rounded">
+          <li class="list-group-item d-flex align-items-center flex-wrap mb-3 rounded-5">
             <?php if (!empty($item['Poster']) && $item['Poster'] !== 'N/A'): ?>
               <img
                 src="<?= $item['Poster'] ?>"

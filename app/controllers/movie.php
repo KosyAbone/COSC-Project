@@ -64,10 +64,13 @@ class Movie extends Controller {
         $imdbNum = is_numeric($imdbRaw) ? (float)$imdbRaw : null;
         $imdbOutOfFive = $imdbNum !== null ? round($imdbNum / 2, 2) : null;
 
-        $ratingForAI = $count > 0 ? $average : $imdbOutOfFive;
-        // Load the GeminiAI model and call generate()
-        $geminiModel = $this->model('GeminiAI');
-        $aiReview = $geminiModel->generate($title, $ratingForAI);
+        $aiReview = null;
+        if (isset($_GET['genAI'])) {
+            $ratingForAI = $count > 0 ? $average : $imdbOutOfFive;
+            // Load the GeminiAI model and call generate()
+            $geminiModel = $this->model('GeminiAI');
+            $aiReview = $geminiModel->generate($title, $ratingForAI);
+        }
 
         $flash = $_SESSION['flash'] ?? null;
         unset($_SESSION['flash']);
@@ -80,7 +83,8 @@ class Movie extends Controller {
             'count' => $count,
             'reviews' => $reviews,
             'aiReview' => $aiReview,
-            'imdbOutOfFive' => $imdbOutOfFive
+            'imdbOutOfFive' => $imdbOutOfFive,
+            'generated'   => isset($_GET['genAI']),
         ]);
     }
 

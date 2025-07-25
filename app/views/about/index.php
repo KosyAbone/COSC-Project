@@ -16,7 +16,7 @@
         <li>OMDb API for movie data</li>
         <li>Google’s Gemini API for AI‑generated reviews</li>
         <li>Bootstrap 5 for styling</li>
-        <li>MySQL (via PDO) to store ratings</li>
+        <li>MariaDB database vis filess.io to store ratings</li>
       </ul>
       <p>Features available:</p>
       <ul>

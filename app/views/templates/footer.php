@@ -10,8 +10,8 @@
         <ul class="list-inline mb-0 d-flex flex-nowrap justify-content-center justify-content-md-end">
           <li class="list-inline-item"><a href="/home" class="text-decoration-none">Home</a></li>
           <li class="list-inline-item"><a href="/about" class="text-decoration-none">About</a></li>
-          <li class="list-inline-item"><a href="/terms" class="text-decoration-none">Terms of Service</a></li>
-          <li class="list-inline-item"><a href="/privacy" class="text-decoration-none">Privacy Policy</a></li>
+          <li class="list-inline-item"><a href="/" class="text-decoration-none">Terms of Service</a></li>
+          <li class="list-inline-item"><a href="/" class="text-decoration-none">Privacy Policy</a></li>
         </ul>
       </div>
     </div>

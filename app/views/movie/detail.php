@@ -105,8 +105,8 @@
             <?php if (!$generated): ?> <!-- i.e if user hasn’t generated yet -->
               <a
                 href="/movie/detail?movie=<?= urlencode($movie['Title']) ?>&genAI=1"
-                class="btn btn-outline-info"
-              >Generate AI‑Review</a>
+                class="btn btn-outline-primary"
+              >Click here to Generate AI‑Review</a>
             <?php else: ?> <!-- i.e we have $aiReview -->
               <div class="card mb-4 p-3 bg-light">
                 <h5 class="mb-2">AI‑Generated Review</h5>

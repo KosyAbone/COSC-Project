@@ -1,56 +1,60 @@
 <?php require_once 'app/views/templates/header.php'; ?>
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f6f8;
-        margin: 0;
-        padding: 0 20px;
-    }
+<?php
+  $user = $_SESSION['username'] ?? 'Guest';
+?>
 
-    .container {
-        max-width: 700px;
-        margin: 50px auto;
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        text-align: center;
-    }
+<main class="container py-5">
 
-    h1 {
-        font-size: 2.5rem;
-        margin-bottom: 0.2rem;
-        color: #333;
-    }
+  <div class="p-5 mb-5 bg-light rounded-3 text-center">
+    <h1 class="display-5 fw-bold">Welcome, <?= $user ?>!</h1>
+    <p class="col-md-8 mx-auto mb-4">
+      Discover, rate, and get AI‑generated reviews of your favourite movies.
+    </p>
+    <a href="/movie" class="btn btn-primary btn-lg">
+      Search Movies
+    </a>
+  </div>
 
-    .lead {
-        font-size: 1.1rem;
-        color: #555;
-        margin-bottom: 2rem;
-    }
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 text-center shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="fa fa-search fa-md me-2 text-primary"></i>Search
+          </h5>
+          <p class="card-text">
+            Look up any movie by title and view all the details you need.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 text-center shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="fa fa-star fa-md me-2 text-warning"></i>Rate
+          </h5>
+          <p class="card-text">
+            Give each movie your personal rating (1–5) and track them in your account.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 text-center shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="fa fa-robot fa-md me-2"></i>AI Reviews
+          </h5>
+          <p class="card-text">
+            Get a custom, AI‑generated review based on average ratings (IMDb or yours).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    .link {
-        display: inline-block;
-        padding: 0.6rem 1.2rem;
-        background: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-        transition: background 0.2s ease-in-out;
-    }
-
-    a:hover {
-        background: #0056b3;
-        color: whitesmoke;
-    }
-</style>
-
-<div class="container">
-    <h1>Welcome, <?=$_SESSION['username'] ?>!</h1>
-    <p class="lead"><?= date("l, F j, Y, g:i A"); ?></p>
-    <p><a class="link" href="/movie">Movie Search</a></p>
-    <p><a class="link" href="/logout">Logout</a></p>
-</div>
+</main>
 
 <?php require_once 'app/views/templates/footer.php'; ?>

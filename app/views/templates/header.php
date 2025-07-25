@@ -19,7 +19,11 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     >
-    <link rel="icon" href="/favicon.png">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
   </head>
       <body class="d-flex flex-column min-vh-100">
       <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">

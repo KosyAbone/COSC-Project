@@ -51,11 +51,11 @@
 
     <div class="card mb-4 mx-auto" style="max-width: 800px;">
       <div class="row g-0">
-        <div class="col-md-4">
+        <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-start align-items-center p-3">
           <?php if (!empty($movie['Poster']) && $movie['Poster'] !== 'N/A'): ?>
             <img
               src="<?= $movie['Poster'] ?>"
-              class="img-fluid rounded-start"
+              class="img-fluid rounded"
               alt="Poster for <?= $movie['Title'] ?>"
             >
           <?php else: ?>
@@ -73,9 +73,9 @@
               <li><strong>Runtime:</strong>  <?= $movie['Runtime'] ?></li>
               <li><strong>IMDB Rating:</strong> <?= $movie['imdbRating'] ?>/10</li>
             </ul>
-            <button type="button" class="btn btn-primary mb-4" onclick="history.back()">
-              &larr; Back to Results
-            </button>
+            <a href="/movie" class="btn btn-primary mb-4">
+              &larr; Back
+            </a>
 
             <!-- Rating Form -->
             <h5 class="mb-3">Rate this Movie</h5>
